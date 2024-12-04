@@ -1,0 +1,477 @@
+body {
+    margin: 0;
+    font-family: 'Kanit', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+    background-color: #fce4ec;
+    color: #880e4f;
+}
+
+.welcome-screen {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, #ff80ab, #f48fb1);
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+.welcome-content {
+    text-align: center;
+    color: white;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    background-color: white;
+    color: #ec407a;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+button:active {
+    animation: bounce 0.2s;
+}
+
+.blog-content {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    animation: fadeIn 1s ease-out;
+}
+
+.post {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border: 1px solid #f8bbd0;
+    animation: slideUp 0.8s ease-out;
+}
+
+/* iOS specific styles */
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Add bounce effect for iOS */
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Stories styles */
+.stories-container {
+    display: block; /* Changed from flex */
+    overflow-x: auto;
+    padding: 10px 0;
+    gap: 15px;
+    scrollbar-width: none;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    margin: 20px;
+    padding: 20px;
+    position: relative;
+    animation: slideUp 0.8s ease-out;
+}
+
+.stories-wrapper {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px; /* Add space after heading */
+    overflow-x: auto;
+}
+
+.stories-container::-webkit-scrollbar {
+    display: none;
+}
+
+.stories-container h1 {
+    font-size: 24px;
+    color: #880e4f;
+    margin: 0; /* Reset margin */
+    padding-left: 10px;
+}
+
+.story {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.story:hover {
+    transform: translateY(-5px);
+}
+
+.story img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 3px solid #f06292;
+    padding: 3px;
+}
+
+.story span {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.story::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    z-index: -1;
+}
+
+.story.viewed::after {
+    background: #8e8e8e;
+}
+
+.story-video-preview {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+    background: #f8bbd0; /* Fallback color while loading */
+    position: relative;
+    z-index: 1;
+    pointer-events: none; /* Prevent video controls */
+    -webkit-transform: translateZ(0); /* Force hardware acceleration */
+    animation: pulse 2s infinite;
+}
+
+/* Story Modal Styles */
+.story-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.story-modal.active {
+    display: flex;
+}
+
+.story-modal-content {
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+}
+
+.story-progress {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    gap: 4px;
+    padding: 0 10px;
+}
+
+.progress-bar {
+    height: 2px;
+    flex: 1;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0;
+    background: white;
+    transition: width 0.1s linear;
+}
+
+.story-video {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Carousel styles */
+.carousel {
+    position: relative;
+    margin: 20px auto;
+    height: 400px; /* Reduced from 600px */
+    max-width: 800px; /* Reduced from 1000px */
+    overflow: hidden; /* Changed from visible */
+    border-radius: 20px;
+}
+
+.carousel-container {
+    position: relative;
+    height: 100%;
+    perspective: 800px;
+}
+
+.carousel-container img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Changed from 0.6s to 0.4s */
+    transform-origin: center;
+    will-change: transform, opacity; /* Optimize performance */
+}
+
+.carousel-container img:nth-child(1) { z-index: 3; }
+.carousel-container img:nth-child(2) { 
+    transform: translateX(-30px) scale(0.95);
+    opacity: 0.9;
+    z-index: 2;
+}
+.carousel-container img:nth-child(3) { 
+    transform: translateX(-60px) scale(0.9);
+    opacity: 0.8;
+    z-index: 1;
+}
+
+.slide-out {
+    transform: translateX(100%) !important;
+    opacity: 0 !important;
+    transition: all 0.3s ease-out !important; /* Added transition */
+}
+
+/* Remove existing carousel button styles */
+.carousel-btn {
+    display: none;
+}
+
+.hero-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    background-color: #f8bbd0;
+    animation: fadeIn 1.5s ease-out;
+    background-size: 200% 200%;
+    animation: gradientShift 15s ease infinite;
+}
+
+.hero-title {
+    font-size: 56px;
+    font-weight: 500;
+    margin: 0;
+    background: linear-gradient(90deg, #ec407a, #f06292);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: slideUp 1s ease-out forwards;
+}
+
+.hero-subtitle {
+    font-size: 26px;
+    font-weight: 300;
+    margin-top: 10px;
+    color: #ad1457;
+    animation: slideUp 1s ease-out 0.3s forwards;
+    opacity: 0;
+}
+
+.grid-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.grid-item {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 30px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(236, 64, 122, 0.1);
+    animation: fadeIn 0.6s ease-out;
+}
+
+.grid-item:hover {
+    transform: scale(1.02);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.grid-item img {
+    width: 100%;
+    height: 400px; /* Increased height for portrait images */
+    object-fit: contain; /* Changed from cover to contain */
+    border-radius: 10px;
+    margin-top: 15px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: rgba(255, 255, 255, 0.5); /* Light background for image padding */
+    padding: 10px;
+}
+
+.grid-item img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(236, 64, 122, 0.2);
+}
+
+.grid-item video {
+    width: 100%;
+    height: 400px;
+    object-fit: contain;
+    border-radius: 10px;
+    margin-top: 15px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+}
+
+.grid-item video:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(236, 64, 122, 0.2);
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 32px;
+    }
+    .hero-subtitle {
+        font-size: 18px;
+    }
+    .grid-section {
+        grid-template-columns: 1fr;
+    }
+    .carousel {
+        height: 300px;
+        margin: 15px auto;
+    }
+    
+    .carousel-container img:nth-child(2) { 
+        transform: translateX(-15px) scale(0.95);
+    }
+    .carousel-container img:nth-child(3) { 
+        transform: translateX(-30px) scale(0.9);
+    }
+    .grid-item img {
+        height: 350px; /* Adjusted for mobile */
+    }
+    .grid-item video {
+        height: 350px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel {
+        height: 250px;
+        margin: 10px auto;
+    }
+    .grid-item img {
+        height: 300px; /* Adjusted for smaller screens */
+    }
+    .grid-item video {
+        height: 300px;
+    }
+}
+
+/* Add subtle animation for links */
+a {
+    color: #f4dae3;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #f06292;
+}
+
+/* Add pink scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #f06292;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: #fce4ec;
+}
+
+/* Add image loading optimization */
+.carousel-container img.lazy {
+    opacity: 0;
+}
+
+.carousel-container img.loaded {
+    opacity: 1;
+}
+
+.post h2 {
+    font-weight: 500;
+}
+
+.post p {
+    font-weight: 300;
+}
+
+/* Optimize animations for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

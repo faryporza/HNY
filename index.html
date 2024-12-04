@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="heart-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>❤️ For You 2024 - 2025</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="welcome-screen" id="welcome">
+        <div class="welcome-content">
+            <h1>นี่ๆ เค้ามีอะไรให้ดู</h1>
+            <button id="playButton">กดเพื่อเล่นเพลง ♪</button>
+        </div>
+    </div>
+    
+    <div class="blog-content" id="blog" style="display: none;">
+        <section class="hero-section" style="background-image: url('hero-image.jpg')">
+            <h1 class="hero-title">โย่ววว จะปีใหม่แล้วนะะ</h1>
+            <p class="hero-subtitle">ขอให้ปีหน้าสมหวังนะคะ</p>
+        </section>
+
+        <div class="stories-container">
+            <h1>Story</h1>
+            <div class="stories-wrapper">
+                <div class="story" data-video="stories/story1.mov">
+                    <video class="story-video-preview" 
+                           src="stories/story1.mov" 
+                           muted 
+                           loop 
+                           playsinline 
+                           webkit-playsinline 
+                           preload="auto"></video>
+                    <span>ต้นปี67!! </span>
+                </div>
+                <div class="story" data-video="stories/story2.mov">
+                    <video class="story-video-preview" 
+                           src="stories/story2.mov" 
+                           muted 
+                           loop 
+                           playsinline 
+                           webkit-playsinline 
+                           preload="auto"></video>
+                    <span>HBD20</span>
+                </div>
+                <div class="story" data-video="stories/story3.mov">
+                    <video class="story-video-preview" 
+                           src="stories/story3.mov" 
+                           muted 
+                           loop 
+                           playsinline 
+                           webkit-playsinline 
+                           preload="auto"></video>
+                    <span>ครบรอบ2ปี</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-section">
+            <div class="grid-item">
+                <h2>คนจ๋วยย</h2>
+                <p>รูปนี้สวยอะะ 😚</p>
+                <img src="/grid/IMG_8456.jpeg" alt="First Memory" width="600" height="300" loading="lazy">
+            </div>
+            <div class="grid-item">
+                <h2>สาวเสื้อม่วง</h2>
+                <p>น่ารักจังง...</p>
+                <video src="grid/video1.MOV" 
+                       alt="Special Moment" 
+                       width="600" 
+                       height="300"
+                       loop
+                       muted
+                       autoplay
+                       playsinline
+                       webkit-playsinline></video>
+            </div>
+        </div>
+
+        <div class="carousel">
+            <div class="carousel-container">
+                <img src="/carousel/img1.jpg" alt="Image 1" loading="lazy" width="750" height="400">
+                <img src="/carousel/img2.jpg" alt="Image 2" loading="lazy" width="750" height="400">
+                <img src="/carousel/img3.jpg" alt="Image 3" loading="lazy" width="750" height="400">
+            </div>
+        </div>
+
+        <!--<h1></h1>
+         Add your blog content here 
+        <div class="post">
+            <h2>ถึงคนที่รัก</h2>
+            <p>นี่คือพื้นที่พิเศษสำหรับคุณ...</p>
+        </div>-->
+    </div>
+
+    <audio id="bgMusic" loop playsinline webkit-playsinline preload="auto">
+        <source src="your-music-file.mp3" type="audio/mp3">
+        <source src="your-music-file.m4a" type="audio/mp4"> <!-- Add iOS compatible format -->
+    </audio>
+    <script src="script.js"></script>
+</body>
+</html>
